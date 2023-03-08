@@ -1639,10 +1639,51 @@
 #     else:
 #         print("-1")
 
-# # 스도쿠sasd
+# # 평행사변형
 # import sys
 # input=sys.stdin.readline
+#
+# def length (xa,ya, xb,yb):
+#     return ((xa - xb)**2 + (ya - yb)**2 )**(1/2)
+#
+# xa,ya,xb,yb,xc,yc = map(int,input().split())
+#
+# if (xb-xa)*(yc-ya)==(yb-ya) * (xc-xa):
+#     print(-1.0)
+# else:
+#     a = []
+#     a.append(length(xa, ya, xb, yb))
+#     a.append(length(xb, yb, xc, yc))
+#     a.append(length(xc, yc, xa, ya))
+#     a.sort()
+#     print(2 * (a[2] - a[0]))
 
 
+# 랜선자르기
+import sys
+input=sys.stdin.readline
 
+K,N = map(int,input().split())
+a=[]
+for i in range(K):
+    a.append(int(input()))
+a.sort(reverse=True)
+bot= 1
+top= a[0]
+while bot<=top:
+#정답 봇=탑 이라서 중앙에 딱 값을 찾을떄까지
+    mid = (bot + top) // 2
+    #print("mid=", mid)
+    temp = 0
+    for i in a:
+        temp+=i//mid
+    # if temp== N:
+    #     break
+    if temp < N:
+        top= mid-1
+    else: #temp>N
+        bot = mid+1
+    #print ("temp=",temp)
+
+print(top)
 

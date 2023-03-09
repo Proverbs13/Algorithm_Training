@@ -1659,31 +1659,115 @@
 #     print(2 * (a[2] - a[0]))
 
 
-# 랜선자르기
+# # 랜선자르기
+# import sys
+# input=sys.stdin.readline
+#
+# K,N = map(int,input().split())
+# a=[]
+# for i in range(K):
+#     a.append(int(input()))
+# a.sort(reverse=True)
+# bot= 1
+# top= a[0]
+# while bot<=top:
+# #정답 봇=탑 이라서 중앙에 딱 값을 찾을떄까지
+#     mid = (bot + top) // 2
+#     #print("mid=", mid)
+#     temp = 0
+#     for i in a:
+#         temp+=i//mid
+#     # if temp== N:
+#     #     break
+#     if temp < N:
+#         top= mid-1
+#     else: #temp>N
+#         bot = mid+1
+#     #print ("temp=",temp)
+# print(top)
+
+# #단어 뒤집기 1
+# import sys
+# #input=sys.stdin.readline
+# for i in range(int(input())):
+#     stack = []
+#     b = []
+#     a = input()
+#
+#     a = list(a)
+#     i = 0
+#     total = len(a)
+#     a.append(" ")
+#     a.append(" ")
+#     # print(a)
+#     # print("total=",total)
+#
+#     while total >= i :
+#         if a[i] == ' ' :
+#             i += 1
+#             b.append(" ")
+#             while a[i] != " ":
+#                 t = a[i]
+#                 stack.append(t)
+#                 i += 1
+#             # print ("stack=",stack)
+#             for j in range(len(stack)):
+#                 b.append(stack.pop())
+#         elif i==0:
+#             while a[i] != " ":
+#                 t = a[i]
+#                 stack.append(t)
+#                 i += 1
+#             # print ("stack=",stack)
+#             for j in range(len(stack)):
+#                 b.append(stack.pop())
+#         else:
+#             b.append(a[i])
+#             i += 1
+#         # print(b)
+#         # print("i=",i)
+#
+#     b = ''.join(b)
+#     print(b)
+#
+
+
+
+
+#단어 뒤집기 2
 import sys
-input=sys.stdin.readline
+#input=sys.stdin.readline
+stack=[]
+b=[]
+a=input()
 
-K,N = map(int,input().split())
-a=[]
-for i in range(K):
-    a.append(int(input()))
-a.sort(reverse=True)
-bot= 1
-top= a[0]
-while bot<=top:
-#정답 봇=탑 이라서 중앙에 딱 값을 찾을떄까지
-    mid = (bot + top) // 2
-    #print("mid=", mid)
-    temp = 0
-    for i in a:
-        temp+=i//mid
-    # if temp== N:
-    #     break
-    if temp < N:
-        top= mid-1
-    else: #temp>N
-        bot = mid+1
-    #print ("temp=",temp)
+a=list(a)
+a.reverse()
+i=0
 
-print(top)
+total=len(a)
+print(a)
 
+
+while  total != i:
+    if a[i]=='>':
+
+        b.append("<")
+        i+=1
+        while a[i]!="<":
+            t=a[i]
+            stack.append(t)
+            i+=1
+        print ("stack=",stack)
+        for j in range(len(stack)):
+            b.append(stack.pop())
+
+        b.append(">")
+        i+=1
+
+    b.append(a[i])
+    i+=1
+    print(i)
+    print(b)
+b = ''.join(b)
+print(b)

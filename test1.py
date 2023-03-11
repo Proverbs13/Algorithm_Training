@@ -1732,42 +1732,63 @@
 #
 
 
+# #단어 뒤집기 2
+# import sys
+# #input=sys.stdin.readline
+# stack=[]
+# b=[]
+# a=list(input())
+# total=len(a)
+# a.append("???") # 엔딩 확인용
+# i=0
+#
+# while  total != i:
+#     if a[i]=='<':
+#         b.append(a[i])
+#         i+=1
+#         #print(i)
+#         while a[i]!=">":
+#             b.append(a[i])
+#             i+=1
+#         b.append(a[i])
+#         i += 1
+#
+#
+#     else:
+#         while a[i] != "<" and a[i] !=" "and a[i] !="???":
+#             stack.append(a[i])
+#             i += 1
+#         # print ("stack=",stack)
+#         for j in range(len(stack)):
+#             b.append(stack.pop())
+#         if a[i]==" ":
+#             b.append(" ")
+#             i+=1
+#
+#     #print("i=",i)
+#     #print("b=",b)
+#
+# b = ''.join(b)
+# print(b)
 
-
-#단어 뒤집기 2
+#괄호
 import sys
 #input=sys.stdin.readline
-stack=[]
-b=[]
-a=input()
 
-a=list(a)
-a.reverse()
-i=0
+for i in range(int(input())):
+    a=list(input())
+    sum = 0
+    length=len(a)
+    for j in range(length):
+        if a[j]=='(':
+            sum+=1
+        else :
+            sum-=1
+        if sum < 0:
+            print("NO")
+            break
+    if sum>0:
+        print("NO")
+    elif sum==0:
+        print("YES")
 
-total=len(a)
-print(a)
-
-
-while  total != i:
-    if a[i]=='>':
-
-        b.append("<")
-        i+=1
-        while a[i]!="<":
-            t=a[i]
-            stack.append(t)
-            i+=1
-        print ("stack=",stack)
-        for j in range(len(stack)):
-            b.append(stack.pop())
-
-        b.append(">")
-        i+=1
-
-    b.append(a[i])
-    i+=1
-    print(i)
-    print(b)
-b = ''.join(b)
-print(b)

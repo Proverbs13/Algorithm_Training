@@ -1771,24 +1771,58 @@
 # b = ''.join(b)
 # print(b)
 
-#괄호
+# #괄호
+# import sys
+# #input=sys.stdin.readline
+#
+# for i in range(int(input())):
+#     a=list(input())
+#     sum = 0
+#     length=len(a)
+#     for j in range(length):
+#         if a[j]=='(':
+#             sum+=1
+#         else :
+#             sum-=1
+#         if sum < 0:
+#             print("NO")
+#             break
+#     if sum>0:
+#         print("NO")
+#     elif sum==0:
+#         print("YES")
+
+# #단어 길이재기
+# import sys
+# #input=sys.stdin.readline
+# print(len(input()))
+
+#요세푸스 문제
 import sys
 #input=sys.stdin.readline
+N,K= map(int,input().split())
+a=[]
+result=[]
+for i in range(1,N+1):
+    a.append(i)
+#print("a ", a)
+t=K-1
+maxl=N
+for i in range(N):
+    result.append(a.pop(t))
+    if maxl==1:
+        maxl=1
+    else:
+        maxl-=1
+    t=(t+K-1)%(maxl)
+    #print(a)
+    #print("maxl",maxl)
+    #print("t",t)
+#print(result)
 
-for i in range(int(input())):
-    a=list(input())
-    sum = 0
-    length=len(a)
-    for j in range(length):
-        if a[j]=='(':
-            sum+=1
-        else :
-            sum-=1
-        if sum < 0:
-            print("NO")
-            break
-    if sum>0:
-        print("NO")
-    elif sum==0:
-        print("YES")
-
+#출력형식
+print("<",end="")
+for i in range(len(result)-1):
+    print(result[i],end=", ")
+print(result[N-1],end="")
+print(">")

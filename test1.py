@@ -1797,32 +1797,82 @@
 # #input=sys.stdin.readline
 # print(len(input()))
 
-#요세푸스 문제
-import sys
-#input=sys.stdin.readline
-N,K= map(int,input().split())
-a=[]
-result=[]
-for i in range(1,N+1):
-    a.append(i)
-#print("a ", a)
-t=K-1
-maxl=N
-for i in range(N):
-    result.append(a.pop(t))
-    if maxl==1:
-        maxl=1
-    else:
-        maxl-=1
-    t=(t+K-1)%(maxl)
-    #print(a)
-    #print("maxl",maxl)
-    #print("t",t)
-#print(result)
+# #요세푸스 문제
+# import sys
+# #input=sys.stdin.readline
+# N,K= map(int,input().split())
+# a=[]
+# result=[]
+# for i in range(1,N+1):
+#     a.append(i)
+# #print("a ", a)
+# t=K-1
+# maxl=N
+# for i in range(N):
+#     result.append(a.pop(t))
+#     if maxl==1:
+#         maxl=1
+#     else:
+#         maxl-=1
+#     t=(t+K-1)%(maxl)
+#     #print(a)
+#     #print("maxl",maxl)
+#     #print("t",t)
+# #print(result)
+#
+# #출력형식
+# print("<",end="")
+# for i in range(len(result)-1):
+#     print(result[i],end=", ")
+# print(result[N-1],end="")
+# print(">")
 
-#출력형식
-print("<",end="")
-for i in range(len(result)-1):
-    print(result[i],end=", ")
-print(result[N-1],end="")
-print(">")
+# # 스택 수열
+# import sys
+# #input=sys.stdin.readline
+# N= int(input())
+# stack=[]
+# ans=[]
+# t=1
+# for i in range(N):
+#     pre = int(input())
+#     while t<=pre:
+#         stack.append(t)
+#         ans.append("+")
+#         t+=1
+#     if stack[-1] == pre:
+#         stack.pop(-1)
+#         ans.append("-")
+#     else:
+#         print("NO")
+#         ans.clear()
+#         break
+# for i in (ans):
+#     print(i)
+
+# # 에디터
+# import sys
+# #input=sys.stdin.readline
+# #stack1 과 stack2로 구별해서 둘로 나눠 풀기 단순 insert 로는 시간초과남
+# stack1=list(input())
+# stack2=[]
+# N=int(input())
+# for i in range(1,N+1):
+#     pre=list(input().split())
+#     if pre[0]== "L":# 커서 왼쪽 이동
+#         if stack1:
+#             stack2.append(stack1.pop()) #오른쪽 스택으로 왼쪽스택의 요소이동
+#     elif pre[0]=="P":
+#         stack1.append(pre[-1])
+#     elif pre[0]=="D": # 커서 오른쪽 이동
+#         if stack2:
+#             stack1.append(stack2.pop()) # 왼쪽 스택으로 오른쪽스택의 요소 이동
+#     else :
+#         if stack1:
+#             stack1.pop()
+#
+# stack2.reverse() # 마지막에 있어야하는게 리스트 순서상 앞에있었으므로 뒤집기
+# stack1 = stack1+ stack2
+# stack1 = ''.join(stack1)
+# print(stack1)
+

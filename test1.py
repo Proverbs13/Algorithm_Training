@@ -1876,3 +1876,136 @@
 # stack1 = ''.join(stack1)
 # print(stack1)
 
+# # 탑
+# import sys
+# N=int(input())
+# tower=list(map(int,input().split()))  # 타워 크기들 저장
+# #print(tower)
+# stack=[] # [인덱스, 높이] 들을 추가
+# result=[]  #정답 리스트 저장
+#
+# for i in range(N):
+#     #print ("i=",i)
+#     if stack:
+#         while stack:
+#             if tower[i] > stack[-1][1]: # 현재 내 타워보다 높은거 마지막 저장타워에 었을 때
+#                 stack.pop()  # 높은거나올때까지 팝 -> 어짜피 내가 높으면 날려야됨
+#
+#             else: # 내타워보다 높은거 나오면
+#                 result.append(stack[-1][0]+1) # 인덱스가 아니라 ~번째임
+#                 break
+#
+#     if not stack: # 작은애 없을 때
+#         result.append(0)
+#
+#     stack.append([i,tower[i]]) # 현재 타워 스택에 추가 (어짜피 작으면 빠짐)
+#
+# for i in range(N):
+#     print(result[i],end=" ")
+
+# # AC
+# # 데큐 사용 문제
+# import sys
+# from collections import deque
+#
+# for i in range(int(input())):
+#     echeck=0
+#     Rcount = 0
+#     order=list(input())
+#     orlen=int(input())
+#     orlist=list(input()[1:-1].split(","))
+#     Q=deque(orlist)
+#
+#     if orlen == 0: #덱 변환 과정에서 기본 크기 1이 생기므로 유의
+#         Q = []
+#
+#     for j in order:
+#         # print(stack)
+#         if j=="R":
+#             Rcount+=1 # 연속 홀수일때만 의미있음
+#         elif j=="D":
+#             #print("len ",len(Q))
+#             if len(Q)==0: # 아무것도 없을 때 빼려고 하면
+#                 print("error")
+#                 echeck=1
+#                 break
+#             else:
+#                 if Rcount%2==0 : # 안뒤집을 때( 앞에서 뽑을 때)
+#                     Q.popleft()
+#
+#                 else: #뒤집을 때
+#                     Q.pop()
+#
+#     if echeck == 0:
+#         if Rcount % 2 == 0:  # 안뒤집을 때
+#             print("[" + ",".join(Q) + "]")  # 이걸로 아래 대체 가능
+#             # print("[",end="")
+#             # for t in range(orlen-D-1,0,-1):
+#             #     print(stack[t],end=",")
+#             # print(stack[0],end="")
+#             # print("]")
+#
+#         else:  # 뒤집을 때
+#             Q.reverse()
+#             print("[" + ",".join(Q) + "]")
+
+# # AXB
+# import sys
+# N,K= map(int,input().split())
+# print(N*K)
+
+# # 알파벳 찾기
+# import sys
+# abc=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+# result= [ -1 for i in range (26) ]
+# Q=list(input())
+# N=len(Q)
+# for i in range(N):
+#     for j in range(26):
+#         if Q[i]==abc[j] and result[j]==-1:
+#             result[j]=i
+# for i in range(26):
+#     print(result[i],end=" ")
+
+# # 상수
+# import sys
+# N,K= map(str,input().split())
+# N=list(N)
+# K=list(K)
+# N.reverse()
+# K.reverse()
+# N="".join(N)
+# K="".join(K)
+# print(max(int(N),int(K)))
+
+
+# # 나머지
+# import sys
+# a=[]
+# for i in range(10):
+#     a.append(int(input())%42)
+# print(len(set(a)))
+
+# # 인공지능 시계
+# import sys
+#
+# H,M,S = map(int,input().split())
+# plus= int(input())
+#
+# S=S+(plus%60)
+# plus=plus//60 # 분단위로 변경
+# if S>=60:
+#     S=S-60
+#     M=M+1
+# M=M+(plus%60) #시간 단위로 변경
+# plus=plus//60
+# if M>=60:
+#     M=M-60
+#     H+=1
+# H=H+(plus%24)
+# if H>=24:
+#     H-=24
+# print(H,M,S)
+
+
+

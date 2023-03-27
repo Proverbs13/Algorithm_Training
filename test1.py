@@ -2008,4 +2008,35 @@
 # print(H,M,S)
 
 
+# # 오큰수
+# import sys
+# N=int(input())
+# L=list(map(int,input().split()))
+# result=[-1 for i in range(N)] #정답 리스트 저장
+# stack=[]# 인덱스 , 값 저장
+# for i in range(N):
+#     while stack: #스택이 존재하는동안
+#         if stack[-1][1]<L[i]: # 만약 지금까지들어온 스택에 들어온애들보다 크면 오큰수
+#             a,b=stack.pop() # 인덱스 정보 받아와서
+#             result[a]=L[i] # 그위치에 오큰수 넣어줌
+#         else:
+#             break
+#     stack.append([i, L[i]]) #현재 스택보다 작은수이면 스택에 추가
+#     #print(stack)
+# for i in range(N):
+#     print(result[i],end=" ")
+#
+# # 시간초과 난 코드  / 스택 사용안한 브루트 포스
+# # for i in range(0,N):
+# #     for j in range(i+1,N):
+# #         if L[i] <L[j]:
+# #             result[i]=L[j]
+# #             break
+# #
+# # for i in range(N):
+# #     print(result[i],end=" ")
+
+
+
+# print(sum( map(int,input().split())))
 

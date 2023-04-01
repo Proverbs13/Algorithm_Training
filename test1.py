@@ -2037,6 +2037,165 @@
 # #     print(result[i],end=" ")
 
 
-
 # print(sum( map(int,input().split())))
+
+
+# # 촌수계산
+# import sys
+# global check
+# check=-1
+# count=0
+# result=[]
+# def dfs(graph, v, visited,count):
+#
+#     visited[v] = -1
+#     if v==t2:
+#         result.append(count)
+#
+#     count += 1
+#     for i in graph[v]:
+#         if not visited[i]:
+#             dfs(graph, i, visited,count)
+#
+# N= int(input())
+# t1,t2=map(int, input().split())
+# fa=[[]for i in range(N+1)]
+# for i in range(int(input())):
+#     a,b=map(int, input().split())
+#     fa[a].append(b),fa[b].append(a)
+#
+# visited=[0]*(N+1)
+# dfs(fa, t1, visited, count)
+# if not result:
+#     print(-1)
+# else:
+#     print(result[0])
+
+
+# #큐
+# import sys
+# input=sys.stdin.readline
+# from collections import deque
+# Q=[]
+# Q=deque(Q)
+# for i in range(int(input())):
+#     P=input().split()
+#     LP=len(P)
+#     if LP==2:
+#         P[1]=int(P[1])
+#     #print(P)
+#     if P[0]=="push":
+#         Q.append(P[1])
+#     elif P[0]=="pop":
+#         if Q:
+#             print(Q.popleft())
+#         else:
+#             print(-1)
+#     elif P[0]=="size":
+#         print(len(Q))
+#     elif P[0]=="empty":
+#         if Q:
+#             print(0)
+#         else:
+#             print(1)
+#     elif P[0] == "front":
+#         if Q:
+#             print(Q[0])
+#         else:
+#             print(-1)
+#
+#     else:
+#         if Q:
+#             print(Q[-1])
+#         else:
+#             print(-1)
+#     P.clear()
+
+# #리모컨
+# import sys
+# input=sys.stdin.readline
+# #모든 버튼이 고장났을때 / 모든 버튼이 멀정할 때 / 입력받은게 100일때
+# #-> 브루트 포스 풀이 시 위의 사항 고려안해도 모든 경우를 고려하기 때문에 그에맞게 코딩하면 됨
+# #점프하고 올라가거나 내려갈때는 점프( 자리수 만큼 번호사용 : len)
+#
+# N = int(input()) #이동채널
+# M = int(input()) #고장난채널수
+# B=[]
+# if M != 0:
+#     B = list(map(int, input().split()))  # 고장 버튼 모음
+#
+# #단순 터치이동 - 일단 결과로 저장
+# result = abs(N - 100)
+# #직접이동 = 이동한 순간의 이동횟수 + 거기서 목표채널까지 이동하는 숫자
+# for i in range(0,1000001):  # 100만이상은 아래에서 올라가는게 빠름
+#     stri = str(i)#  길이 체크
+#     for j in range(len(stri)):  # 문자열로 바꿔서 첫째자리부터 확인 (문자열 반복가능)
+#         if int(stri[j]) in B :# 고장난 채널이 사용되면
+#             break
+#         if (len(stri)-1)== j:# 마지막 자리까지 오면
+#             result= min(result   , abs(N-i) + len(stri)) #아까 최소 아님, 현재i에서 가는 최소
+# print(result)
+
+
+# # 줄번호
+# # import sys
+# # input=sys.stdin.readline
+# for i in range(int(input())):
+#     print((str(i+1))+".",input())
+
+
+# # 세수정렬
+# a=list(map(int,input().split()))
+# a.sort()
+# for i in range(len(a)):
+#     print(a[i],end=" ")
+
+# # 최댓값
+# a=[]
+# for i in range(0,9):
+#    a.append([int(input()),i+1])
+# a.sort(reverse=True)
+# # print("a",a)
+# print(a[0][0])
+# print(a[0][1])
+
+
+
+# 프린터 큐
+import sys
+input=sys.stdin.readline
+for i in range(int(input())):
+    result=0
+    N,M = map(int,input().split())
+    L2 = [0 for i in range(N)]
+    L=list(map(int,input().split(" ")))
+    result=0
+    while M!=-1:
+        if L[0] == max(L):
+            L.pop(0)
+            M-=1
+            result+=1
+        else:
+            L.append(L[0])
+            L.pop(0)
+            if M==0:
+                M=len(L)-1
+            else:
+                M-=1
+    print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -2161,35 +2161,48 @@
 
 
 
-# 프린터 큐
+# # 프린터 큐
+# import sys
+# input=sys.stdin.readline
+# for i in range(int(input())):
+#     result=0
+#     N,M = map(int,input().split())
+#     L2 = [0 for i in range(N)]
+#     L=list(map(int,input().split(" ")))
+#     result=0
+#     while M!=-1:
+#         if L[0] == max(L):
+#             L.pop(0)
+#             M-=1
+#             result+=1
+#         else:
+#             L.append(L[0])
+#             L.pop(0)
+#             if M==0:
+#                 M=len(L)-1
+#             else:
+#                 M-=1
+#     print(result)
+
+
+#문자열 반복
 import sys
 input=sys.stdin.readline
-for i in range(int(input())):
-    result=0
-    N,M = map(int,input().split())
-    L2 = [0 for i in range(N)]
-    L=list(map(int,input().split(" ")))
-    result=0
-    while M!=-1:
-        if L[0] == max(L):
-            L.pop(0)
-            M-=1
-            result+=1
-        else:
-            L.append(L[0])
-            L.pop(0)
-            if M==0:
-                M=len(L)-1
-            else:
-                M-=1
-    print(result)
-
-
-
-
-
-
-
+count1=0
+count2=0
+l=list(map(int,input().split()))
+for i in range(0, 8):
+    if l[i] == i + 1:
+        count1 += 1
+for i in range(0, 8):
+    if l[i] == 8-i:
+        count2 += 1
+if count1 == 8:
+    print("ascending")
+elif count2 == 8:
+    print("descending")
+else:
+    print("mixed")
 
 
 

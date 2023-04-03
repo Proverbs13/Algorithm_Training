@@ -2184,29 +2184,44 @@
 #                 M-=1
 #     print(result)
 
+# #문자열 반복
+# import sys
+# input=sys.stdin.readline
+# count1=0
+# count2=0
+# l=list(map(int,input().split()))
+# for i in range(0, 8):
+#     if l[i] == i + 1:
+#         count1 += 1
+# for i in range(0, 8):
+#     if l[i] == 8-i:
+#         count2 += 1
+# if count1 == 8:
+#     print("ascending")
+# elif count2 == 8:
+#     print("descending")
+# else:
+#     print("mixed")
 
-#문자열 반복
+
+
+# OX 퀴즈
 import sys
-input=sys.stdin.readline
-count1=0
-count2=0
-l=list(map(int,input().split()))
-for i in range(0, 8):
-    if l[i] == i + 1:
-        count1 += 1
-for i in range(0, 8):
-    if l[i] == 8-i:
-        count2 += 1
-if count1 == 8:
-    print("ascending")
-elif count2 == 8:
-    print("descending")
-else:
-    print("mixed")
-
-
-
-
+#input=sys.stdin.readline
+for k in range(int(input())):
+    result=0
+    p=1
+    l=list(input())
+    l.insert(0,"X")
+    for i in range(1,len(l)):
+        if l[i]=="O":
+            if l[i-1]=="X":
+                p=1
+                result+=p
+            else :
+                p+=1
+                result+=p
+    print(result)
 
 
 

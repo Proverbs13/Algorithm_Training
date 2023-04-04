@@ -2205,25 +2205,175 @@
 
 
 
-# OX 퀴즈
-import sys
-#input=sys.stdin.readline
-for k in range(int(input())):
-    result=0
-    p=1
-    l=list(input())
-    l.insert(0,"X")
-    for i in range(1,len(l)):
-        if l[i]=="O":
-            if l[i-1]=="X":
-                p=1
-                result+=p
-            else :
-                p+=1
-                result+=p
-    print(result)
+# # OX 퀴즈
+# import sys
+# #input=sys.stdin.readline
+# for k in range(int(input())):
+#     result=0
+#     p=1
+#     l=list(input())
+#     l.insert(0,"X")
+#     for i in range(1,len(l)):
+#         if l[i]=="O":
+#             if l[i-1]=="X":
+#                 p=1
+#                 result+=p
+#             else :
+#                 p+=1
+#                 result+=p
+#     print(result)
 
 
+# # 숫자의 합
+# import sys
+# #input=sys.stdin.readline
+# n=int(input())
+# l=list(map(int,input()))
+# print(sum(l))
+
+# # A/B
+# import sys
+# #input=sys.stdin.readline
+# a,b=map(int,input().split())
+# print(a/b)
+
+# # 알고리즘 수업 - 깊이 우선 탐색 1
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)
+# count=1
+# N,M,R=map(int, input().split())
+#
+# visited=[0]*(N+1)
+# visited[0]=-1
+#
+# path=[]
+# result=[0]*(N+1)
+# fa=[[]for i in range(N+1)]
+#
+# for i in range(M):
+#     a,b=map(int, input().split())
+#     fa[a].append(b),fa[b].append(a)
+#
+# for i in range(1,N+1):
+#     fa[i].sort()
+#
+# def dfs(v):
+#     visited[v] = 1
+#     path.append(v)
+#     for i in fa[v]:
+#         if not visited[i]:
+#             dfs(i)
+# dfs(R)
+#
+# for idx, node in zip(range(1, len(path)+1), path):
+#     result[node] = idx
+#
+# #print (result)
+# for i in range (1,N+1):
+#     print(result[i])
+
+#
+# # 알고리즘 수업 - 너비 우선 탐색 1
+# from collections import deque
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)
+# count=1
+# N,M,R=map(int, input().split())
+#
+# visited=[0]*(N+1)
+# visited[0]=-1
+#
+# path=[]
+# result=[0]*(N+1)
+# fa=[[]for i in range(N+1)]
+#
+# for i in range(M):
+#     a,b=map(int, input().split())
+#     fa[a].append(b),fa[b].append(a)
+#
+# for i in range(1,N+1):
+#     fa[i].sort()
+#
+# def dfs(v):
+#     visited[v] = 1
+#     print(v,end=" ")
+#     for i in fa[v]:
+#         if not visited[i]:
+#             dfs(i)
+#
+# def bfs(graph,v,visited):
+#     Q=deque([v])
+#     visited[v]=-1
+#     while Q:
+#         v=Q.popleft()
+#         path.append(v)
+#         #print(v)
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 Q.append(i)
+#                 visited[i]=-1
+#
+#
+# bfs(fa,R,visited)
+#
+# for idx, node in zip(range(1, len(path)+1), path):
+#     result[node] = idx
+#
+# #print (result)
+# for i in range (1,N+1):
+#     print(result[i])
 
 
+# # DFS 와 BFS
+# from collections import deque
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)
+# count=1
+# N,M,R=map(int, input().split())
+#
+# visited=[0]*(N+1)
+# path=[]
+# result=[0]*(N+1)
+# fa=[[]for i in range(N+1)]
+#
+# for i in range(M):
+#     a,b=map(int, input().split())
+#     fa[a].append(b),fa[b].append(a)
+#
+# for i in range(1,N+1):
+#     fa[i].sort()
+#
+# def dfs(v):
+#     visited[v] = 1
+#     print(v,end=" ")
+#     for i in fa[v]:
+#         if not visited[i]:
+#             dfs(i)
+#
+# def bfs(graph,v,visited):
+#     Q=deque([v])
+#     visited[v]=-1
+#     while Q:
+#         v=Q.popleft()
+#         #path.append(v)
+#         print(v,end=" ")
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 Q.append(i)
+#                 visited[i]=-1
+#
+# dfs(R)
+# print("")
+# visited=[0]*(N+1)
+#
+# bfs(fa,R,visited)
+#
+# # for idx, node in zip(range(1, len(path)+1), path):
+# #     result[node] = idx
+# # #print (result)
+# # for i in range (1,N+1):
+# #     print(result[i])
 

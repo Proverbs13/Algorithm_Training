@@ -2315,7 +2315,6 @@
 #                 Q.append(i)
 #                 visited[i]=-1
 #
-#
 # bfs(fa,R,visited)
 #
 # for idx, node in zip(range(1, len(path)+1), path):
@@ -2324,6 +2323,7 @@
 # #print (result)
 # for i in range (1,N+1):
 #     print(result[i])
+
 
 
 # # DFS 와 BFS
@@ -2376,4 +2376,74 @@
 # # #print (result)
 # # for i in range (1,N+1):
 # #     print(result[i])
+
+
+
+#
+# # 연결요소의 개수
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)
+#
+# N,M=map(int, input().split())
+#
+# visited=[0]*(N+1)
+# visited[0]=-1
+# count=0
+# fa=[[]for i in range(N+1)]
+#
+# for i in range(M):
+#     a,b=map(int, input().split())
+#     fa[a].append(b),fa[b].append(a)
+#
+# #print(fa)
+# def dfs(v):
+#     visited[v] = 1
+#     for i in fa[v]:
+#         if not visited[i]:
+#             dfs(i)
+#
+# for i in range(1,N+1):
+#     if visited[i]==0:
+#         dfs(i)
+#         count+=1
+#
+# print(count)
+
+
+# # 두수 비교하기
+# import sys
+# input=sys.stdin.readline
+# A,B=map(int, input().split())
+# if A>B:
+#     print(">")
+# elif A<B:
+#     print("<")
+# else :
+#     print("==")
+
+# # 두수 비교하기
+# import sys
+# input=sys.stdin.readline
+# A,B=map(int, input().split())
+# if A>B:
+#     print(">")
+# elif A<B:
+#     print("<")
+# else :
+#     print("==")
+
+#단어의 개수
+a=list(input().split(" "))
+# print (a)
+# print("len : ", len(a))
+if a[0]=="" and a[-1]!="" :
+    print(len(a)-1)
+elif a[-1]=="" and a[0]!="" :
+    print(len(a)-1)
+
+elif a[0]=="" and a[-1]=="":
+    print(len(a)-2)
+else:
+    print(len(a))
 

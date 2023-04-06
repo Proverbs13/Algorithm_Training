@@ -1567,12 +1567,12 @@
 #         g[Y][X] = 1
 #
 #     for i in range(N):
-#         for j in range(M):
-#             if g[i][j] == 1:
-#                 dfs(j, i)
-#                 cnt += 1
-#     print(cnt)
-#     #print(g)
+# #         for j in range(M):
+# #             if g[i][j] == 1:
+# #                 dfs(j, i)
+# #                 cnt += 1
+# #     print(cnt)
+# #     #print(g)
 
 # #상근날드
 # import sys
@@ -2379,7 +2379,7 @@
 
 
 
-#
+
 # # 연결요소의 개수
 # import sys
 # input=sys.stdin.readline
@@ -2433,17 +2433,92 @@
 # else :
 #     print("==")
 
-#단어의 개수
-a=list(input().split(" "))
-# print (a)
-# print("len : ", len(a))
-if a[0]=="" and a[-1]!="" :
-    print(len(a)-1)
-elif a[-1]=="" and a[0]!="" :
-    print(len(a)-1)
 
-elif a[0]=="" and a[-1]=="":
-    print(len(a)-2)
-else:
-    print(len(a))
+# #단어의 개수
+# a=list(input().split(" "))
+# # print (a)
+# # print("len : ", len(a))
+# if a[0]=="" and a[-1]!="" :
+#     print(len(a)-1)
+# elif a[-1]=="" and a[0]!="" :
+#     print(len(a)-1)
+#
+# elif a[0]=="" and a[-1]=="":
+#     print(len(a)-2)
+# else:
+#     print(len(a))
 
+
+
+# # 연결요소의 개수
+# import sys
+# #input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)
+# for i in range(int(input())):
+#     N=int(input())
+#     visited = [0] * (N + 1)
+#     visited[0] = -1
+#     count = 0
+#     ex1 = []
+#
+#     ex1=[[]for i in range(N+1)]
+#     ex2 = list(map(int,input().split()))
+#
+#     for i in range(1,N+1):
+#         ex1[i].append(ex2[i-1])
+#
+#
+#     def dfs(v):
+#         visited[v] = 1
+#         for i in ex1[v]:
+#             if not visited[i]:
+#                 dfs(i)
+#
+#
+#     for i in range(1, N + 1):
+#         if visited[i] == 0:
+#             dfs(i)
+#             count += 1
+#     print(count)
+
+
+
+# #섬의 개수수
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)# 재귀제한해제
+#
+# def dfs(x,y):
+#     g[y][x]=-99
+#     dx=[0,0,1,-1,1,1,-1,-1]
+#     dy=[1,-1,0,0,1,-1,1,-1]
+#     for i in range(8):
+#         nx= x+dx[i]
+#         ny= y+dy[i]
+#         if 0<=nx< w  and 0<=ny< h:
+#             if g[ny][nx]==1:
+#                 #g[ny][nx] == -99
+#                 dfs(nx,ny)
+#
+# while(1):
+#     w, h = map(int, input().split())
+#     if w == 0 and h == 0:
+#         break
+#     cnt = 0
+#     g = []
+#     for i in range(h):
+#         g.append(list(map(int, input().split())))
+#     for i in range(w):
+#         for j in range(h):
+#             if g[j][i] == 1:
+#                 dfs(i, j) #x,y로 보냄
+#                 cnt += 1
+#     print(cnt)
+#     # print(g)
+
+# #최대, 최소
+# import sys
+# input=sys.stdin.readline
+# a=input()
+# b=list(map(int,input().split()))
+# print(min(b),max(b))

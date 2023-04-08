@@ -2482,8 +2482,7 @@
 #     print(count)
 
 
-
-# #섬의 개수수
+# #섬의 개수
 # import sys
 # input=sys.stdin.readline
 # sys.setrecursionlimit(10**9)# 재귀제한해제
@@ -2499,7 +2498,6 @@
 #             if g[ny][nx]==1:
 #                 #g[ny][nx] == -99
 #                 dfs(nx,ny)
-#
 # while(1):
 #     w, h = map(int, input().split())
 #     if w == 0 and h == 0:
@@ -2522,3 +2520,93 @@
 # a=input()
 # b=list(map(int,input().split()))
 # print(min(b),max(b))
+
+# #단지 번호 붙이기
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)# 재귀제한해제
+#
+# def dfs(x,y):
+#     global check
+#     g[y][x]=-99
+#     dx=[0,0,1,-1]
+#     dy=[1,-1,0,0]
+#     check+=1
+#     for i in range(4):
+#         nx= x+dx[i]
+#         ny= y+dy[i]
+#         if 0<=nx< N  and 0<=ny< N:
+#             if g[ny][nx]==1:
+#                 #g[ny][nx] == -99
+#                 dfs(nx,ny)
+#
+#
+# N=int(input())
+# result=[]
+# cnt = 0
+# global check
+# g = []
+# for i in range(N):
+#     g.append(list(map(int, input().strip())))
+# # print(g)
+# for i in range(N):
+#     for j in range(N):
+#         check=0
+#         if g[j][i] == 1:
+#             dfs(i, j)  # x,y로 보냄
+#             result.append(check)
+#             cnt += 1
+# print(cnt)
+# result.sort()
+# for i in result:
+#     print (i)
+# # print(g)
+
+
+#덱
+import sys
+input=sys.stdin.readline
+from collections import deque
+Q=[]
+Q=deque(Q)
+for i in range(int(input())):
+    P=input().split()
+    #print("i =",i+1)
+    LP=len(P)
+    if LP==2:
+        P[1]=int(P[1])
+    # print(P)
+    if P[0]=="push_front":
+        Q.appendleft(P[1])
+    elif P[0]=="push_back":
+        Q.append(P[1])
+    elif P[0]=="pop_front":
+        if Q:
+            print(Q.popleft())
+        else:
+            print(-1)
+    elif P[0]=="pop_back":
+        if Q:
+            print(Q.pop())
+        else:
+            print(-1)
+    elif P[0]=="size":
+        print(len(Q))
+    elif P[0]=="empty":
+        if Q:
+            print(0)
+        else:
+            print(1)
+    elif P[0] == "front":
+        if Q:
+            print(Q[0])
+        else:
+            print(-1)
+
+    else: #back
+        if Q:
+            print(Q[-1])
+        else:
+            print(-1)
+
+    P.clear()

@@ -2563,50 +2563,83 @@
 # # print(g)
 
 
-#덱
+# #덱
+# import sys
+# input=sys.stdin.readline
+# from collections import deque
+# Q=[]
+# Q=deque(Q)
+# for i in range(int(input())):
+#     P=input().split()
+#     #print("i =",i+1)
+#     LP=len(P)
+#     if LP==2:
+#         P[1]=int(P[1])
+#     # print(P)
+#     if P[0]=="push_front":
+#         Q.appendleft(P[1])
+#     elif P[0]=="push_back":
+#         Q.append(P[1])
+#     elif P[0]=="pop_front":
+#         if Q:
+#             print(Q.popleft())
+#         else:
+#             print(-1)
+#     elif P[0]=="pop_back":
+#         if Q:
+#             print(Q.pop())
+#         else:
+#             print(-1)
+#     elif P[0]=="size":
+#         print(len(Q))
+#     elif P[0]=="empty":
+#         if Q:
+#             print(0)
+#         else:
+#             print(1)
+#     elif P[0] == "front":
+#         if Q:
+#             print(Q[0])
+#         else:
+#             print(-1)
+#
+#     else: #back
+#         if Q:
+#             print(Q[-1])
+#         else:
+#             print(-1)
+#
+#     P.clear()
+
+# #근구단
+# import sys
+# input=sys.stdin.readline
+# N= int(input())
+# for i in range(1,10):
+#     print(N,"*",i,"=",N*i)
+
+#소수 찾기
 import sys
+import math
 input=sys.stdin.readline
-from collections import deque
-Q=[]
-Q=deque(Q)
-for i in range(int(input())):
-    P=input().split()
-    #print("i =",i+1)
-    LP=len(P)
-    if LP==2:
-        P[1]=int(P[1])
-    # print(P)
-    if P[0]=="push_front":
-        Q.appendleft(P[1])
-    elif P[0]=="push_back":
-        Q.append(P[1])
-    elif P[0]=="pop_front":
-        if Q:
-            print(Q.popleft())
-        else:
-            print(-1)
-    elif P[0]=="pop_back":
-        if Q:
-            print(Q.pop())
-        else:
-            print(-1)
-    elif P[0]=="size":
-        print(len(Q))
-    elif P[0]=="empty":
-        if Q:
-            print(0)
-        else:
-            print(1)
-    elif P[0] == "front":
-        if Q:
-            print(Q[0])
-        else:
-            print(-1)
+global count
+count=0
+q=input()
+l=list(map(int,input().split()))
+def isprime(N):
+    global count
+    if N==1: # 1 소수 아님
+        return
+    if N%2==0 and N!=2: # 2 제외 짝수 소수 아님
+        return
+    # 3부터 당사자 제곱근 까지 나눴을 때 나눠떨어지면 소수 x
+    for i in range(3,int(math.sqrt(N)+1)):
+        if N%i==0:
+            return
+    #나머지는 소수
+    count += 1
+    return
 
-    else: #back
-        if Q:
-            print(Q[-1])
-        else:
-            print(-1)
-
-    P.clear()
+for i in l:
+    isprime(i)
+print (count)

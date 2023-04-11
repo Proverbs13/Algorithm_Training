@@ -2618,28 +2618,44 @@
 # for i in range(1,10):
 #     print(N,"*",i,"=",N*i)
 
-#소수 찾기
-import sys
-import math
-input=sys.stdin.readline
-global count
-count=0
-q=input()
-l=list(map(int,input().split()))
-def isprime(N):
-    global count
-    if N==1: # 1 소수 아님
-        return
-    if N%2==0 and N!=2: # 2 제외 짝수 소수 아님
-        return
-    # 3부터 당사자 제곱근 까지 나눴을 때 나눠떨어지면 소수 x
-    for i in range(3,int(math.sqrt(N)+1)):
-        if N%i==0:
-            return
-    #나머지는 소수
-    count += 1
-    return
+# #소수 찾기
+# import sys
+# import math
+# input=sys.stdin.readline
+# global count
+# count=0
+# q=input()
+# l=list(map(int,input().split()))
+# def isprime(N):
+#     global count
+#     if N==1: # 1 소수 아님
+#         return
+#     if N%2==0 and N!=2: # 2 제외 짝수 소수 아님
+#         return
+#     # 3부터 당사자 제곱근 까지 나눴을 때 나눠떨어지면 소수 x
+#     for i in range(3,int(math.sqrt(N)+1)):
+#         if N%i==0:
+#             return
+#     #나머지는 소수
+#     count += 1
+#     return
+#
+# for i in l:
+#     isprime(i)
+# print (count)
 
-for i in l:
-    isprime(i)
-print (count)
+# #나이순 정렬
+# import sys
+# input=sys.stdin.readline
+# l=[]
+# N=int(input())
+# for i in range(N):
+#     l.append(list(map(str, input().split())))
+#     l[i][0] = int(l[i][0])
+#     l[i].append(i+1)
+#
+# l=sorted(l,key=lambda l:l[2] )
+# l=sorted(l,key=lambda l:l[0] )
+#
+# for i in range(N):
+#     print(l[i][0],l[i][1])

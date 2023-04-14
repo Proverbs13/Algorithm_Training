@@ -2659,3 +2659,126 @@
 #
 # for i in range(N):
 #     print(l[i][0],l[i][1])
+
+
+# #트리의 부모찾기
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)# 재귀제한해제
+# N=int(input())
+# t=[[] for i in range(N+1)]
+# p=[0 for i in range(N+1)]
+
+# for i in range(N-1):
+#     m,n=map(int,input().split())
+#     t[m].append(n),t[n].append(m)
+#
+# def dfs(v):
+#     for i in t[v]:
+#         if p[i]==0:  # 부모 안정해지면 부모 넣기
+#             p[i]=v
+#             dfs(i)
+# dfs(1)
+# for i in range(2,N+1):
+#     print(p[i])
+
+
+
+# #트리 순회
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)# 재귀제한해제
+#
+# N=int(input())
+# d={}
+# for i in range(N):
+#     p,l,r=input().split()
+#     d[p]=[l,r]
+#
+# pre= []
+# post=[]
+# ino=[]
+# def inorder(x): # 중위
+#     if d[x][0] != ".":
+#         inorder(d[x][0])
+#     ino.append(x)
+#     if d[x][1] != ".":
+#         inorder(d[x][1])
+#     return
+#
+# def preorder(x): # 전위
+#     pre.append(x)
+#     if d[x][0] != ".":
+#         preorder(d[x][0])
+#     if d[x][1] != ".":
+#         preorder(d[x][1])
+#     return
+#
+# def postorder(x): # 중위
+#     if d[x][0] != ".":
+#         postorder(d[x][0])
+#     if d[x][1] != ".":
+#         postorder(d[x][1])
+#     post.append(x)
+#     return
+#
+# postorder("A")
+# preorder("A")
+# inorder("A")
+#
+# # print (pre,post,ino)
+# for i in range(N):
+#     print(pre[i],end="")
+# print("")
+# for i in range(N):
+#     print(ino[i],end="")
+# print("")
+# for i in range(N):
+#     print(post[i],end="")
+
+
+
+#트리
+import sys
+input=sys.stdin.readline
+sys.setrecursionlimit(10**9)# 재귀제한해제
+
+N=int(input())
+inputl= list(map(int,input().split()))
+
+cut=int(input())
+visited=[0]*(N)
+t=[[] for i in range(N)]
+start=inputl.index(-1)
+
+for i in range(N):
+    m,n=i,inputl[i]
+    if n!=-1:
+        t[m].append(n), t[n].append(m)
+
+#print (t)
+for i in t[cut]:
+    t[i].remove(cut)
+t[cut].clear()
+#print (t)
+
+global count
+count=0
+
+def dfs(v):
+    global count
+    #print(v)
+    visited[v] = 1
+    if len(t[v])== 1 and v != start:
+        count+=1
+        return
+    for i in t[v]:
+        if not visited[i]:
+            dfs(i)
+dfs(start)
+#루트가 삭제될 때 (스타트== 컷) 0이 맞지만 루트노드만 남아있을 땐 루트도 리프노드다 그걸 고려해야함
+# 컷노드 != 루트노드 인데 루트노드에 안들어있을때 1 출력
+if start != cut and len(t[start])==0:
+    print ("1")
+else:
+    print(count)

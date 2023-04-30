@@ -2738,47 +2738,66 @@
 
 
 
-#트리
+# #트리
+# import sys
+# input=sys.stdin.readline
+# sys.setrecursionlimit(10**9)# 재귀제한해제
+#
+# N=int(input())
+# inputl= list(map(int,input().split()))
+#
+# cut=int(input())
+# visited=[0]*(N)
+# t=[[] for i in range(N)]
+# start=inputl.index(-1)
+#
+# for i in range(N):
+#     m,n=i,inputl[i]
+#     if n!=-1:
+#         t[m].append(n), t[n].append(m)
+#
+# #print (t)
+# for i in t[cut]:
+#     t[i].remove(cut)
+# t[cut].clear()
+# #print (t)
+#
+# global count
+# count=0
+#
+# def dfs(v):
+#     global count
+#     #print(v)
+#     visited[v] = 1
+#     if len(t[v])== 1 and v != start:
+#         count+=1
+#         return
+#     for i in t[v]:
+#         if not visited[i]:
+#             dfs(i)
+# dfs(start)
+# #루트가 삭제될 때 (스타트== 컷) 0이 맞지만 루트노드만 남아있을 땐 루트도 리프노드다 그걸 고려해야함
+# # 컷노드 != 루트노드 인데 루트노드에 안들어있을때 1 출력
+# if start != cut and len(t[start])==0:
+#     print ("1")
+# else:
+#     print(count)
+
+
+#듣보잡잡
 import sys
-input=sys.stdin.readline
-sys.setrecursionlimit(10**9)# 재귀제한해제
-
-N=int(input())
-inputl= list(map(int,input().split()))
-
-cut=int(input())
-visited=[0]*(N)
-t=[[] for i in range(N)]
-start=inputl.index(-1)
-
+# input=sys.stdin.readline
+M,N=map(int,input().split())
+m=[]
+n=[]
 for i in range(N):
-    m,n=i,inputl[i]
-    if n!=-1:
-        t[m].append(n), t[n].append(m)
-
-#print (t)
-for i in t[cut]:
-    t[i].remove(cut)
-t[cut].clear()
-#print (t)
-
-global count
-count=0
-
-def dfs(v):
-    global count
-    #print(v)
-    visited[v] = 1
-    if len(t[v])== 1 and v != start:
-        count+=1
-        return
-    for i in t[v]:
-        if not visited[i]:
-            dfs(i)
-dfs(start)
-#루트가 삭제될 때 (스타트== 컷) 0이 맞지만 루트노드만 남아있을 땐 루트도 리프노드다 그걸 고려해야함
-# 컷노드 != 루트노드 인데 루트노드에 안들어있을때 1 출력
-if start != cut and len(t[start])==0:
-    print ("1")
-else:
-    print(count)
+    n.append(input())
+for i in range(M):
+    m.append(input())
+m=set(m)
+n=set(n)
+result=sorted(list(m&n))
+t=len(result)
+print(t)
+for i in range(t):
+    print(result[i])

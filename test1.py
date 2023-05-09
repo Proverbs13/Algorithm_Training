@@ -2784,20 +2784,39 @@
 #     print(count)
 
 
-#듣보잡잡
+# #듣보잡잡
+# import sys
+# # input=sys.stdin.readline
+# M,N=map(int,input().split())
+# m=[]
+# n=[]
+# for i in range(N):
+#     n.append(input())
+# for i in range(M):
+#     m.append(input())
+# m=set(m)
+# n=set(n)
+# result=sorted(list(m&n))
+# t=len(result)
+# print(t)
+# for i in range(t):
+#     print(result[i])
+
+#잃어버린 괄호
 import sys
 # input=sys.stdin.readline
-M,N=map(int,input().split())
-m=[]
-n=[]
-for i in range(N):
-    n.append(input())
-for i in range(M):
-    m.append(input())
-m=set(m)
-n=set(n)
-result=sorted(list(m&n))
-t=len(result)
-print(t)
-for i in range(t):
-    print(result[i])
+
+T= list(input().split("-")) # - 기준으로 나누고  나머지는 다 더해서 빼는것이 최소
+# print(T)
+result=0
+a=(T[0].split("+"))
+for i in a:
+    result+=int(i)
+T.pop(0)
+while (T):
+    a = (T[0].split("+"))
+    for i in a:
+        result -= int(i)
+    T.pop(0)
+print(result)
+

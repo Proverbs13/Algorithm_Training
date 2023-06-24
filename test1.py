@@ -2802,21 +2802,90 @@
 # for i in range(t):
 #     print(result[i])
 
-#잃어버린 괄호
+# #잃어버린 괄호
+# import sys
+# # input=sys.stdin.readline
+#
+# T= list(input().split("-")) # - 기준으로 나누고  나머지는 다 더해서 빼는것이 최소
+# # print(T)
+# result=0
+# a=(T[0].split("+"))
+# for i in a:
+#     result+=int(i)
+# T.pop(0)
+# while (T):
+#     a = (T[0].split("+"))
+#     for i in a:
+#         result -= int(i)
+#     T.pop(0)
+# print(result)
+
+# #곱셈
+# import sys
+# # input=sys.stdin.readline
+# A=int(input())
+# B=list(map(int,input()))
+# R1=A*B[2]
+# R2=A*B[1]
+# R3=A*B[0]
+# print(R1)
+# print(R2)
+# print(R3)
+# print(R1+10*R2+100*R3)
+
+# #파일정리
+# import sys
+# # input=sys.stdin.readline
+# N=int(input())
+# dic={}
+# Result=[]
+# for i in range(N):
+#     l=input()
+#     loca=l.find(".")
+#     if l[loca+1:] not in dic:
+#         dic[l[loca+1:]]=1
+#     else:
+#         dic[l[loca+1:]]+=1
+# # print(dic)
+# for key, value in dic.items():
+#     Result.append([key,value])
+# Result.sort()
+# for i in range(len(Result)):
+#     print(Result[i][0],Result[i][1])
+
+# #카드 구매하기
+# import sys
+# # input=sys.stdin.readline
+# N=int(input())
+# l=list(map(int,input().split()))
+# l.insert(0,0)
+# mp=[ 0 for i in range(N+1)]
+# mp[1]=l[1]
+# # print(mp)
+# # print(n)
+# for i in range(2,N+1): # N개 곱하는 케이스를 고려하지 않아도 됨
+#     for j in range(1,i+1):
+#         mp[i]=max(mp[i] , mp[i-j]+l[j])
+# # print(mp)
+# print(mp[N])
+
+
+#나는야 포켓몬 마스터 이다솜
 import sys
-# input=sys.stdin.readline
-
-T= list(input().split("-")) # - 기준으로 나누고  나머지는 다 더해서 빼는것이 최소
-# print(T)
-result=0
-a=(T[0].split("+"))
-for i in a:
-    result+=int(i)
-T.pop(0)
-while (T):
-    a = (T[0].split("+"))
-    for i in a:
-        result -= int(i)
-    T.pop(0)
-print(result)
-
+import string
+input=sys.stdin.readline
+N,M=map(int,input().split())
+poke=[]
+d={}
+for i in range(1,N+1):
+    an=input().strip()
+    poke.append(an)
+    d[an]=i
+#print(poke)
+#print(d)
+for j in range(M):
+    q=input().strip()
+    if q.isalpha(): #문자면
+        print(d[q])
+    else: #숫자면
+        print(poke[int(q)-1])

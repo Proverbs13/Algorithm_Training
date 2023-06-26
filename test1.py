@@ -2870,22 +2870,54 @@
 # print(mp[N])
 
 
-#나는야 포켓몬 마스터 이다솜
+# #나는야 포켓몬 마스터 이다솜
+# import sys
+# import string
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# poke=[]
+# d={}
+# for i in range(1,N+1):
+#     an=input().strip()
+#     poke.append(an)
+#     d[an]=i
+# #print(poke)
+# #print(d)
+# for j in range(M):
+#     q=input().strip()
+#     if q.isalpha(): #문자면
+#         print(d[q])
+#     else: #숫자면
+#         print(poke[int(q)-1])
+
+
+# 나무 자르기
 import sys
-import string
-input=sys.stdin.readline
+#input=sys.stdin.readline
 N,M=map(int,input().split())
-poke=[]
-d={}
-for i in range(1,N+1):
-    an=input().strip()
-    poke.append(an)
-    d[an]=i
-#print(poke)
-#print(d)
-for j in range(M):
-    q=input().strip()
-    if q.isalpha(): #문자면
-        print(d[q])
-    else: #숫자면
-        print(poke[int(q)-1])
+t=list(map(int,input().split()))
+t.sort()
+high = t[-1] # 제일 큰 거
+bot = 0   # 제일 작은 거
+
+check=0
+while high >= bot: # 아래가 high 로 넘어간다는 뜻이 딱 찾았다는 뜻
+    mid = (high + bot) // 2
+
+    # 합구하기
+    hap = 0
+    for i in range(N):
+        if mid < t[i]:
+            hap += t[i] - mid
+    # print('hap=',hap,"M=", M)
+    # print("mid",mid)
+    # print("high",high,"bot",bot)
+    # print("")
+    #적어도 M 는 가져가려면 = 칼날을 올리면서 끝나야함
+    if M <= hap:  # 원하는 나무 량보다 많거나 같을떄 이순간에서는 끝나도 됨 high값으로
+         bot=mid+1 # 칼날 올리기
+    else : # 적을때 -> 이거보단 많이 잘라야함 high 값 필요
+        high = mid-1 # 칼날 내리기
+# print(mid)
+# print(bot)
+print(high)

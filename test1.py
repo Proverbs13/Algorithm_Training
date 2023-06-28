@@ -2922,8 +2922,47 @@
 # # print(bot)
 # print(high)
 
-# 열개씩 끊어 출력하기
-s=input().strip()
-while s:
-    print(s[:10])
-    s= s[10:]
+# # 열개씩 끊어 출력하기
+# s=input().strip()
+# while s:
+#     print(s[:10])
+#     s= s[10:]
+
+
+# # IOIOI - 50점 답
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# M=int(input())
+# S=input().strip()
+# com= "OI" * N
+#
+# count=0
+# for i in range(M):
+#     if S[i]=="I":
+#         #print("com=",com,"S[i+1:i+1+(N*2)]=" , S[i+1:i+1+(N*2)])
+#         if S[i+1:i+1+(N*2)] == com:
+#             count+=1
+# print (count)
+
+# IOIOI - 10점답
+import sys
+input=sys.stdin.readline
+N=int(input())
+M=int(input())
+S=input().strip()
+result,i,count=0,0,0
+
+while i<(M-1):
+    if S[i:i+3]=="IOI":
+        i+=2 #-> 두칸 한번에 이동
+        count+=1
+        if count==N:
+            count-=1  #-> 핵심코드 내가 그동안 온 수치는 가져가면서
+            result+=1 #-> 정답만 하나 추가함
+    else:
+        count=0
+        i+=1
+print (result)
+
+

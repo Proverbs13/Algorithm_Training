@@ -2945,24 +2945,56 @@
 #             count+=1
 # print (count)
 
-# IOIOI - 10점답
+# # IOIOI - 100점답
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# M=int(input())
+# S=input().strip()
+# result,i,count=0,0,0
+#
+# while i<(M-1):
+#     if S[i:i+3]=="IOI":
+#         i+=2 #-> 두칸 한번에 이동
+#         count+=1
+#         if count==N:
+#             count-=1  #-> 핵심코드 내가 그동안 온 수치는 가져가면서
+#             result+=1 #-> 정답만 하나 추가함
+#     else:
+#         count=0
+#         i+=1
+# print (result)
+
+# # 계단오르기
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# S=[0 for i in range(301)]
+# dp=[0 for i in range(301)]
+# for i in range(1,N+1):
+#     S[i]= int(input())
+#
+# dp[1]=S[1]
+# dp[2]=S[1]+S[2]
+# dp[3]=max(dp[1]+S[3],S[2]+S[3])
+#
+# for i in range(4,N+1):
+#     dp[i]= max( dp[i-3]+S[i-1]+S[i] , dp[i-2]+S[i] )
+# # print(dp)
+# print(dp[N])
+
+# 1, 2, 3 더하기
 import sys
 input=sys.stdin.readline
-N=int(input())
-M=int(input())
-S=input().strip()
-result,i,count=0,0,0
 
-while i<(M-1):
-    if S[i:i+3]=="IOI":
-        i+=2 #-> 두칸 한번에 이동
-        count+=1
-        if count==N:
-            count-=1  #-> 핵심코드 내가 그동안 온 수치는 가져가면서
-            result+=1 #-> 정답만 하나 추가함
-    else:
-        count=0
-        i+=1
-print (result)
+for i in range(int(input())):
+    N=int(input())
+    dp = [0 for i in range(12)]
+    dp[1]=1
+    dp[2]=2
+    dp[3]=4
+    for i in range(4,N+1):
+        dp[i]=dp[i-3]+dp[i-2]+dp[i-1]
+    print(dp[N])
 
 

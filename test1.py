@@ -2983,18 +2983,50 @@
 # # print(dp)
 # print(dp[N])
 
-# 1, 2, 3 더하기
+# # 1, 2, 3 더하기
+# import sys
+# input=sys.stdin.readline
+#
+# for i in range(int(input())):
+#     N=int(input())
+#     dp = [0 for i in range(12)]
+#     dp[1]=1
+#     dp[2]=2
+#     dp[3]=4
+#     for i in range(4,N+1):
+#         dp[i]=dp[i-3]+dp[i-2]+dp[i-1]
+#     print(dp[N])
+
+
+
+# 미로 찾기 - bfs 통한 경로 탐색 / l 자체의 값을 갱신해서 count 로 사용
 import sys
 input=sys.stdin.readline
+from collections import deque
+N,M= map(int,input().split())
+l=[]
+for i in range(N):
+    l.append(list(map(int,input().strip())))
+# 2차원 배열 기본형 완성
 
-for i in range(int(input())):
-    N=int(input())
-    dp = [0 for i in range(12)]
-    dp[1]=1
-    dp[2]=2
-    dp[3]=4
-    for i in range(4,N+1):
-        dp[i]=dp[i-3]+dp[i-2]+dp[i-1]
-    print(dp[N])
+def bfs(x,y): # 갈수있는 좌표 조합 상하좌우
+    dx = [0, 0, 1, -1]
+    dy = [1, -1, 0, 0]
 
+    Q=deque() # 데큐 생성후
+    Q.append((x,y)) # 기본 좌표 집어넣기
+    while Q:
+        x, y = Q.popleft() #도착했을떄 하나빼고
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < M and 0 <= ny < N:
+                if l[ny][nx] == 1:
+                    l[ny][nx] = l[y][x]+1   # 현재 카운트를 세어가며 직접 l에 입력
+                    #print(l)
+                    Q.append((nx,ny)) # 관련붙어있는애들 추가
+
+bfs(0,0)
+print(l[N-1][M-1])
 

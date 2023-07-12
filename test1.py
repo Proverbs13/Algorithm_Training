@@ -3031,24 +3031,58 @@
 # print(l[N-1][M-1])
 
 
-# 패션왕 신해빈
+# # 패션왕 신해빈
+# import sys
+# input=sys.stdin.readline
+#
+# for i in range(int(input())):
+#     N=int(input())
+#     l={}
+#     result=1
+#     for i in range(N):
+#         m, n = map(str, input().split())
+#         if n not in l:
+#             l[n]=1
+#         else:
+#             l[n]+=1
+#     for i in l:
+#         result*=(l[i]+1)
+#     result-=1
+#     print(result)
+
+
+
+# 회의실 배정
 import sys
 input=sys.stdin.readline
 
+l=[]
 for i in range(int(input())):
-    N=int(input())
-    l={}
-    result=1
-    for i in range(N):
-        m, n = map(str, input().split())
-        if n not in l:
-            l[n]=1
-        else:
-            l[n]+=1
-    for i in l:
-        result*=(l[i]+1)
-    result-=1
-    print(result)
+    l.append(list(map(int,input().split())))
+l.sort(key=lambda x : (x[1],x[0])) # 끝나는 시간 기준 정렬
+
+count=1
+t=l[0][1]
+L=len(l)
+
+#빨리 끝나는 애보다 먼저시작하는애들 배제하고 반복문 한번으로 끝냄
+for i in range(1,L):
+
+    if t<=l[i][0]:
+        t=l[i][1]
+        count+=1
+print(count)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

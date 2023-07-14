@@ -3052,27 +3052,41 @@
 
 
 
-# 회의실 배정
-import sys
-input=sys.stdin.readline
+# # 회의실 배정
+# import sys
+# input=sys.stdin.readline
+#
+# l=[]
+# for i in range(int(input())):
+#     l.append(list(map(int,input().split())))
+# l.sort(key=lambda x : (x[1],x[0])) # 끝나는 시간 기준 정렬
+#
+# count=1
+# t=l[0][1]
+# L=len(l)
+#
+# #빨리 끝나는 애보다 먼저시작하는애들 배제하고 반복문 한번으로 끝냄
+# for i in range(1,L):
+#
+#     if t<=l[i][0]:
+#         t=l[i][1]
+#         count+=1
+# print(count)
 
-l=[]
-for i in range(int(input())):
-    l.append(list(map(int,input().split())))
-l.sort(key=lambda x : (x[1],x[0])) # 끝나는 시간 기준 정렬
-
-count=1
-t=l[0][1]
-L=len(l)
-
-#빨리 끝나는 애보다 먼저시작하는애들 배제하고 반복문 한번으로 끝냄
-for i in range(1,L):
-
-    if t<=l[i][0]:
-        t=l[i][1]
-        count+=1
-print(count)
-
+#
+# # 단어정렬
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# l=[]
+# for i in range(N):
+#     l.append(input().strip())
+#
+# l=list(set(l))
+# l.sort()
+# l.sort(key=lambda x:len(x))
+# for i in l:
+#     print(i)
 
 
 

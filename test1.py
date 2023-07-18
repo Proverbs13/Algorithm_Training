@@ -3089,13 +3089,17 @@
 #     print(i)
 
 
+# # 아스키 코드
+# print(ord(input()))
 
-
-# 아스키 코드
-print(ord(input()))
-
-
-
+# 이항 계수
+N,M = map(int, input().split())
+def fact(n):
+    res=1
+    for i in range(2,n+1):
+        res*=i
+    return res
+print(fact(N)//(fact(N-M)*fact(M)))
 
 
 

@@ -3092,19 +3092,35 @@
 # # 아스키 코드
 # print(ord(input()))
 
-# 이항 계수
-N,M = map(int, input().split())
-def fact(n):
-    res=1
-    for i in range(2,n+1):
-        res*=i
-    return res
-print(fact(N)//(fact(N-M)*fact(M)))
+# # 이항 계수
+# N,M = map(int, input().split())
+# def fact(n):
+#     res=1
+#     for i in range(2,n+1):
+#         res*=i
+#     return res
+# print(fact(N)//(fact(N-M)*fact(M)))
 
+#가장 증가하는 부분 수열
+import sys
+input=sys.stdin.readline
 
+N=int(input())
 
+l=list(map(int,input().split()))
 
+dp=[0 for i in range(N)]
+for i in range(0,N):
+    dp[i]=1
+    for j in range(0,i): # 내앞에가 작으면 그거 +1 / i 순간의 dp 에는 그전까지의 정보 저장
+        # print("l[i]>l[j]",l[i],l[j])
+        # print("1+dp[j]>dp[i]", 1+dp[j],dp[i])
 
+        if l[i]>l[j] and 1+dp[j]>dp[i]:
+            dp[i] = 1+dp[j]
+
+# print(dp)
+print(max(dp))
 
 
 

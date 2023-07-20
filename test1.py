@@ -3101,28 +3101,83 @@
 #     return res
 # print(fact(N)//(fact(N-M)*fact(M)))
 
-#가장 증가하는 부분 수열
+# #가장 증가하는 부분 수열
+# import sys
+# input=sys.stdin.readline
+#
+# N=int(input())
+#
+# l=list(map(int,input().split()))
+#
+# dp=[0 for i in range(N)]
+# for i in range(0,N):
+#     dp[i]=1
+#     for j in range(0,i): # 내앞에가 작으면 그거 +1 / i 순간의 dp 에는 그전까지의 정보 저장
+#         # print("l[i]>l[j]",l[i],l[j])
+#         # print("1+dp[j]>dp[i]", 1+dp[j],dp[i])
+#
+#         if l[i]>l[j] and 1+dp[j]>dp[i]:
+#             dp[i] = 1+dp[j]
+#
+# # print(dp)
+# print(max(dp))
+
+
+
+
+# A->B ------------------------------
+
+#내 풀이 - 탑다운 방식
 import sys
 input=sys.stdin.readline
+A,B=map(int,input().split())
+count=0
+check=False
 
-N=int(input())
+while A<=B:
+    #print("B =", B)
+    if B==A:
+        #print("탈출")
+        count+=1
+        check = True
+        break
+    elif B%2==0:
+        B=B//2
+        count+=1
+    elif B%10==1 :
+        B=int(str(B)[0:-1])
+        count += 1
+    else:
+        count=-1
+        break
+    #print("count =", count)
+if not check:
+    count=-1
+print(count)
 
-l=list(map(int,input().split()))
+# 원래 유도된 그래프 bfs 풀이 - 바텀업 방식
 
-dp=[0 for i in range(N)]
-for i in range(0,N):
-    dp[i]=1
-    for j in range(0,i): # 내앞에가 작으면 그거 +1 / i 순간의 dp 에는 그전까지의 정보 저장
-        # print("l[i]>l[j]",l[i],l[j])
-        # print("1+dp[j]>dp[i]", 1+dp[j],dp[i])
+from collections import deque
+# 입력
+A, B = map(int, input().split())
+# BFS 탐색
+queue = deque([(1, A)])
+while queue:
+    cnt, x = queue.popleft()
 
-        if l[i]>l[j] and 1+dp[j]>dp[i]:
-            dp[i] = 1+dp[j]
+    # B와 같다면 탐색종료
+    if x == B:
+        print(cnt)
+        break
 
-# print(dp)
-print(max(dp))
+    # 2를 곱한다
+    if x * 2 <= B:
+        queue.append((cnt+1, x*2))
 
+    # 1를 오른쪽에 추가한다
+    if x * 10 + 1 <= B:
+        queue.append((cnt+1, x*10+1))
 
-
-
-
+# 찾지 못했다면 -1 출력
+else:
+    print(-1)

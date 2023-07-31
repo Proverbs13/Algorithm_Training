@@ -3123,61 +3123,97 @@
 # print(max(dp))
 
 
+# # A->B ------------------------------
+#
+# #내 풀이 - 탑다운 방식
+# import sys
+# input=sys.stdin.readline
+# A,B=map(int,input().split())
+# count=0
+# check=False
+#
+# while A<=B:
+#     #print("B =", B)
+#     if B==A:
+#         #print("탈출")
+#         count+=1
+#         check = True
+#         break
+#     elif B%2==0:
+#         B=B//2
+#         count+=1
+#     elif B%10==1 :
+#         B=int(str(B)[0:-1])
+#         count += 1
+#     else:
+#         count=-1
+#         break
+#     #print("count =", count)
+# if not check:
+#     count=-1
+# print(count)
+#
+# # 원래 유도된 그래프 bfs 풀이 - 바텀업 방식
+#
+# from collections import deque
+# # 입력
+# A, B = map(int, input().split())
+# # BFS 탐색
+# queue = deque([(1, A)])
+# while queue:
+#     cnt, x = queue.popleft()
+#
+#     # B와 같다면 탐색종료
+#     if x == B:
+#         print(cnt)
+#         break
+#
+#     # 2를 곱한다
+#     if x * 2 <= B:
+#         queue.append((cnt+1, x*2))
+#
+#     # 1를 오른쪽에 추가한다
+#     if x * 10 + 1 <= B:
+#         queue.append((cnt+1, x*10+1))
+#
+# # 찾지 못했다면 -1 출력
+# else:
+#     print(-1)
 
 
-# A->B ------------------------------
-
-#내 풀이 - 탑다운 방식
+# 쉬운 계단 수
+# 문제풀이법 = 끝나는 수 기준으로 찾기
+# dp 2 2
+# 2개짜리 2로 끝나는 = 1개짜리 1로 끝나는 + 1개짜리 3으로 끝나는
+#
+# dp 3 2
+# 3개짜리 2로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 4로끝나는
 import sys
 input=sys.stdin.readline
-A,B=map(int,input().split())
-count=0
-check=False
+N=int(input())
+result=0
+dp=[ [0 for i in range(10)] for i in range(101)]
+for i in range(1,10): # 0으로 시작하는것은 없음
+    dp[1][i]=1
+for i in range(2,N+1):
+    for j in range(10):
+        if j==0:
+            dp[i][0]=dp[i-1][1] # 0옆에는 1만 가능
+        elif j==9:
+            dp[i][9]=dp[i-1][8] # 9옆에는 8만 가능
+        else:
+            dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]
+        dp[i][j]%1000000000 # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+for i in range(10):
+    result=(result+dp[N][i])%1000000000
+print(result%1000000000)
 
-while A<=B:
-    #print("B =", B)
-    if B==A:
-        #print("탈출")
-        count+=1
-        check = True
-        break
-    elif B%2==0:
-        B=B//2
-        count+=1
-    elif B%10==1 :
-        B=int(str(B)[0:-1])
-        count += 1
-    else:
-        count=-1
-        break
-    #print("count =", count)
-if not check:
-    count=-1
-print(count)
 
-# 원래 유도된 그래프 bfs 풀이 - 바텀업 방식
-
-from collections import deque
-# 입력
-A, B = map(int, input().split())
-# BFS 탐색
-queue = deque([(1, A)])
-while queue:
-    cnt, x = queue.popleft()
-
-    # B와 같다면 탐색종료
-    if x == B:
-        print(cnt)
-        break
-
-    # 2를 곱한다
-    if x * 2 <= B:
-        queue.append((cnt+1, x*2))
-
-    # 1를 오른쪽에 추가한다
-    if x * 10 + 1 <= B:
-        queue.append((cnt+1, x*10+1))
-
-# 찾지 못했다면 -1 출력
-else:
-    print(-1)
+# # 오르막수
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# dp=[]
+# count=0
+#
+# print(count%10007)

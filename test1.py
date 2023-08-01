@@ -3181,39 +3181,54 @@
 #     print(-1)
 
 
-# 쉬운 계단 수
+# # 쉬운 계단 수
+# # 문제풀이법 = 끝나는 수 기준으로 찾기
+# # dp 2 2
+# # 2개짜리 2로 끝나는 = 1개짜리 1로 끝나는 + 1개짜리 3으로 끝나는
+# #
+# # dp 3 2
+# # 3개짜리 2로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 4로끝나는
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# result=0
+# dp=[ [0 for i in range(10)] for i in range(101)]
+# for i in range(1,10): # 0으로 시작하는것은 없음
+#     dp[1][i]=1
+# for i in range(2,N+1):
+#     for j in range(10):
+#         if j==0:
+#             dp[i][0]=dp[i-1][1] # 0옆에는 1만 가능
+#         elif j==9:
+#             dp[i][9]=dp[i-1][8] # 9옆에는 8만 가능
+#         else:
+#             dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]
+#         dp[i][j]%1000000000 # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+# for i in range(10):
+#     result=(result+dp[N][i])%1000000000
+# print(result%1000000000)
+
+
+
+# 오르막수
 # 문제풀이법 = 끝나는 수 기준으로 찾기
-# dp 2 2
-# 2개짜리 2로 끝나는 = 1개짜리 1로 끝나는 + 1개짜리 3으로 끝나는
-#
-# dp 3 2
-# 3개짜리 2로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 4로끝나는
+# dp 2 2 -
+# 2개짜리 2로 끝나는 = 0으로 끝나는 1개 + 1로 끝나는 1개 + 2로 끝나는 1개
+# dp 3 3 -
+# 3개짜리 3으로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 1로 끝나는 +  2개짜리 0으로 끝나는 + 2개짜리 3으로 끝나는
 import sys
 input=sys.stdin.readline
 N=int(input())
 result=0
-dp=[ [0 for i in range(10)] for i in range(101)]
-for i in range(1,10): # 0으로 시작하는것은 없음
+dp=[ [0 for i in range(10)] for i in range(1001)]
+for i in range(0,10): # 0으로 시작 가능
     dp[1][i]=1
 for i in range(2,N+1):
     for j in range(10):
-        if j==0:
-            dp[i][0]=dp[i-1][1] # 0옆에는 1만 가능
-        elif j==9:
-            dp[i][9]=dp[i-1][8] # 9옆에는 8만 가능
-        else:
-            dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]
-        dp[i][j]%1000000000 # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+        for k in range(j+1):
+            dp[i][j]+=dp[i-1][k]
+            dp[i][j] % 10007  # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+
 for i in range(10):
-    result=(result+dp[N][i])%1000000000
-print(result%1000000000)
-
-
-# # 오르막수
-# import sys
-# input=sys.stdin.readline
-# N=int(input())
-# dp=[]
-# count=0
-#
-# print(count%10007)
+    result=(result+dp[N][i])%10007
+print(result%10007)

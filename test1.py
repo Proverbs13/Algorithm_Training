@@ -3210,25 +3210,48 @@
 
 
 
-# 오르막수
-# 문제풀이법 = 끝나는 수 기준으로 찾기
-# dp 2 2 -
-# 2개짜리 2로 끝나는 = 0으로 끝나는 1개 + 1로 끝나는 1개 + 2로 끝나는 1개
-# dp 3 3 -
-# 3개짜리 3으로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 1로 끝나는 +  2개짜리 0으로 끝나는 + 2개짜리 3으로 끝나는
+# # 오르막수
+# # 문제풀이법 = 끝나는 수 기준으로 찾기
+# # dp 2 2 -
+# # 2개짜리 2로 끝나는 = 0으로 끝나는 1개 + 1로 끝나는 1개 + 2로 끝나는 1개
+# # dp 3 3 -
+# # 3개짜리 3으로 끝나는 = 2개짜리 2로끝나는 + 2개짜리 1로 끝나는 +  2개짜리 0으로 끝나는 + 2개짜리 3으로 끝나는
+# import sys
+# input=sys.stdin.readline
+# N=int(input())
+# result=0
+# dp=[ [0 for i in range(10)] for i in range(1001)]
+# for i in range(0,10): # 0으로 시작 가능
+#     dp[1][i]=1
+# for i in range(2,N+1):
+#     for j in range(10):
+#         for k in range(j+1):
+#             dp[i][j]+=dp[i-1][k]
+#             dp[i][j] % 10007  # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+#
+# for i in range(10):
+#     result=(result+dp[N][i])%10007
+# print(result%10007)
+
+
+# 구간 합 구하기 5 - 1부터 현재값까지 다더한것을 dp화-> 현재 dp 값은 내 위 / 앞 dp 값 합치고 그 둘 중복 공간 뺴줌
 import sys
 input=sys.stdin.readline
-N=int(input())
-result=0
-dp=[ [0 for i in range(10)] for i in range(1001)]
-for i in range(0,10): # 0으로 시작 가능
-    dp[1][i]=1
-for i in range(2,N+1):
-    for j in range(10):
-        for k in range(j+1):
-            dp[i][j]+=dp[i-1][k]
-            dp[i][j] % 10007  # 문제 조건 (모듈러 연산으로 값 크기 줄이기)
+N,M=map(int,input().split())
+result=[]
 
-for i in range(10):
-    result=(result+dp[N][i])%10007
-print(result%10007)
+L=[]
+
+for i in range(N):
+    L.append(list(map(int,input().split())))
+dp= [[0 for i in range(N+1)]for j in range(N+1)]
+for i in range(1,N+1):
+    for j in range(1,N+1):
+        dp[i][j]=L[i-1][j-1]+dp[i][j-1]+dp[i-1][j]-dp[i-1][j-1]
+
+for j in range(M):
+    x1,y1,x2,y2= map(int,input().split())
+    result.append( dp[x2][y2] + dp[x1-1][y1-1]- dp[x2][y1-1]- dp[x1-1][y2])
+
+for t in result:
+    print(t)

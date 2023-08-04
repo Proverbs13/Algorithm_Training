@@ -3256,5 +3256,77 @@
 # for t in result:
 #     print(t)
 
-#We love kriii
-print("강한친구 대한육군\n강한친구 대한육군")
+
+
+# #We love kriii
+# print("강한친구 대한육군\n강한친구 대한육군")
+
+
+
+# # 구간 합 구하기 4 - 구간합 이용
+# import sys
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# result=[]
+# L=list(map(int,input().split()))
+#
+# dp= [0 for j in range(N+1)]
+# for i in range(1,N+1):
+#     dp[i]=L[i-1]+dp[i-1]
+#
+# for j in range(M):
+#     x1,x2= map(int,input().split())
+#     result.append(dp[x2]-dp[x1-1])
+#
+# for t in result:
+#     print(t)
+
+#
+# # N과 M(1) - 백트래킹
+# import sys
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# l=[]
+# def dfs():
+#     if len(l)==M:
+#         for j in l:
+#             print(j,end=" ")
+#         print("")
+#         return  # 조건 충족했으면 종료
+#
+#     for i in range(1,N+1):
+#         if i not in l:
+#             l.append(i)
+#             dfs()
+#             l.pop() # 원래 있던 요소 빼고 다음 차수로 진입
+# dfs()
+
+
+
+# N과 M(2) - 백트래킹
+import sys
+input=sys.stdin.readline
+N,M=map(int,input().split())
+l=[]
+def dfs():
+    if len(l)==M:
+        for j in l:
+            print(j,end=" ")
+        print("")
+        return  # 조건 충족했으면 종료
+
+    for i in range(1,N+1):
+        if (i not in l) :
+            if len(l)==0:
+                l.append(i)
+                dfs()
+                l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+            else:
+                if l[-1]<i:
+                    l.append(i)
+                    dfs()
+                    l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+dfs()
+
+
+

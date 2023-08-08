@@ -3380,20 +3380,29 @@
 
 
 
-# N과 M(3) - 백트래킹
-import sys
-input=sys.stdin.readline
-N,M=map(int,input().split())
-l=[]
-def dfs():
-    if len(l)==M:
-        for j in l:
-            print(j,end=" ")
-        print("")
-        return  # 조건 충족했으면 종료
+# # N과 M(3) - 백트래킹
+# import sys
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# l=[]
+# def dfs():
+#     if len(l)==M:
+#         for j in l:
+#             print(j,end=" ")
+#         print("")
+#         return  # 조건 충족했으면 종료
+#
+#     for i in range(1,N+1):
+#         l.append(i)
+#         dfs()
+#         l.pop() # 원래 있던 요소 빼고 다음 차수로 진입
+# dfs()
 
-    for i in range(1,N+1):
-        l.append(i)
-        dfs()
-        l.pop() # 원래 있던 요소 빼고 다음 차수로 진입
-dfs()
+
+#나머지
+A, B, C=map(int,input().split())
+print((A+B)%C)
+print(((A%C) + (B%C))%C)
+print((A*B)%C)
+print( ((A%C) * (B%C))%C)
+

@@ -3399,10 +3399,71 @@
 # dfs()
 
 
-#나머지
-A, B, C=map(int,input().split())
-print((A+B)%C)
-print(((A%C) + (B%C))%C)
-print((A*B)%C)
-print( ((A%C) * (B%C))%C)
+# #나머지
+# A, B, C=map(int,input().split())
+# print((A+B)%C)
+# print(((A%C) + (B%C))%C)
+# print((A*B)%C)
+# print( ((A%C) * (B%C))%C)
 
+
+# # N과 M(8) - 백트래킹
+# import sys
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# task=list(map(int,input().split()))
+# task.sort()
+# l=[]
+# def dfs():
+#     if len(l)==M:
+#         for j in l:
+#             print(j,end=" ")
+#         print("")
+#         return  # 조건 충족했으면 종료
+#
+#     for i in task:
+#         if len(l)==0: # 사이즈 0 일때는 그냥 append
+#             l.append(i)
+#             dfs()
+#             l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+#         else:
+#             if l[-1]<=i: # 아닐때는 같거나 큰거 추가
+#                 l.append(i)
+#                 dfs()
+#                 l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+# dfs()
+
+
+# N과 M(9) - 백트래킹 - 난이도 어려웠음
+import sys
+input=sys.stdin.readline
+N,M=map(int,input().split())
+task=sorted(list(map(int,input().split())))
+
+visit = [False for i in range(N)]
+
+l=[]
+
+def dfs():
+    remem=0 # 이전값 저장용 변수
+    if len(l)==M:
+        for j in l:
+            print(j,end=" ")
+        print("")
+        return  # 조건 충족했으면 종료
+
+
+    for i in range(N):
+        #print("i = ", i, "task[i]= ", task[i] ,"remem= ",remem, visit , l)
+
+        if remem!=task[i] and visit[i]==False: # 이전에 썻던거 또 안나오고, 안쓴애들중에서만 고르기
+            visit[i]=True # 방문 체크 # 또 다시 방문 안하려고
+            remem=task[i] # 가장 최근 사용한 값
+            l.append(task[i]) #요소 추가 후 재귀
+            dfs()
+            visit[i]=False
+            l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+
+        #위와같이 코드를 짜면 다른 중복값 여러개를 가지고있을때 첫순간 중복에만 출력하고 그이후 중복에 대해서는 계속 처리하지 않음
+
+dfs()

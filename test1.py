@@ -3469,41 +3469,68 @@
 # dfs()
 
 
+# # N과 M(12) - 백트래킹
+# import sys
+# input=sys.stdin.readline
+# N,M=map(int,input().split())
+# task=sorted(list(set(map(int,input().split())))) # 중복 허용이므로 아예 set 으로
+#
+# visit = [False for i in range(N)]
+#
+# l=[]
+# result=[]
+#
+# def dfs():
+#     remem=0 # 이전값 저장용 변수
+#     if len(l)==M:
+#         result.append(l)
+#         for j in l:
+#             print(j,end=" ")
+#         print("")
+#         return  # 조건 충족했으면 종료
+#
+#
+#     for i in range(len(task)):
+#         #print("i = ", i, "task[i]= ", task[i] ,"remem= ",remem, visit , l)
+#
+#         if len(l) == 0:  # 사이즈 0 일때는 그냥 append
+#             l.append(task[i])
+#             dfs()
+#             l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+#         else:
+#             if remem != task[i] and l[-1] <= task[i]:  # 이전에 썻던거 또 안나오고, 안쓴애들중에서만 고르기
+#                 remem = task[i]  # 가장 최근 사용한 값
+#                 l.append(task[i])  # 요소 추가 후 재귀
+#                 dfs()
+#                 l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+# dfs()
 
-# N과 M(12) - 백트래킹
+
+
+# 정수 삼각형
 import sys
 input=sys.stdin.readline
-N,M=map(int,input().split())
-task=sorted(list(set(map(int,input().split())))) # 중복 허용이므로 아예 set 으로
-
-visit = [False for i in range(N)]
-
+N=int(input())
 l=[]
-result=[]
+dp=[[] for i in range(N)]
 
-def dfs():
-    remem=0 # 이전값 저장용 변수
-    if len(l)==M:
-        result.append(l)
-        for j in l:
-            print(j,end=" ")
-        print("")
-        return  # 조건 충족했으면 종료
+for i in range(1,N+1):
+    for j in range(i):
+        dp[i-1].append(0)
 
+for i in range(N):
+    l.append((list(map(int,input().split()))))
 
-    for i in range(len(task)):
-        #print("i = ", i, "task[i]= ", task[i] ,"remem= ",remem, visit , l)
+dp[0][0]=l[0][0]
 
-        if len(l) == 0:  # 사이즈 0 일때는 그냥 append
-            l.append(task[i])
-            dfs()
-            l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+for i in range(1,N):
+    for j in range(len(l[i])):
+        if j == 0:
+            dp[i][j]=dp[i-1][j]+l[i][j]
+        elif j==len(l[i])-1:
+            dp[i][j]=dp[i-1][j-1]+l[i][j]
         else:
-            if remem != task[i] and l[-1] <= task[i]:  # 이전에 썻던거 또 안나오고, 안쓴애들중에서만 고르기
-                remem = task[i]  # 가장 최근 사용한 값
-                l.append(task[i])  # 요소 추가 후 재귀
-                dfs()
-                l.pop()  # 원래 있던 요소 빼고 다음 차수로 진입
+            dp[i][j]=l[i][j]+max(dp[i-1][j-1],dp[i-1][j])
 
+print(max(dp[N-1]))
 
-dfs()

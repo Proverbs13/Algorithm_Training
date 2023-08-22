@@ -3538,9 +3538,17 @@
 # N,M=map(int,input().split())
 # print(abs(N-M))
 
-#합
-n=int(input())
-a=0
-for i in range(1,n+1):
-    a+=i
-print(a)
+# #합
+# n=int(input())
+# a=0
+# for i in range(1,n+1):
+#     a+=i
+# print(a)
+
+
+# 세 수
+
+N=list(map(int,input().split()))
+N.sort()
+print(N[1])
+

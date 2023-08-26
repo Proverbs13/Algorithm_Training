@@ -3546,9 +3546,18 @@
 # print(a)
 
 
-# 세 수
+# # 세 수
+# N=list(map(int,input().split()))
+# N.sort()
+# print(N[1])
 
-N=list(map(int,input().split()))
-N.sort()
-print(N[1])
+# 좌표 정렬하기
+N=int(input())
+asd=[]
+for i in range(N):
+    asd.append(list(map(int,input().split())))
+
+asd.sort(key = lambda x : (x[0],x[1]) )
+for i in asd:
+    print(i[0],i[1])
 
